@@ -1,52 +1,18 @@
 # dataguard-frontend-challenge
 
-This template should help get you started developing with Vue 3 in Vite.
+Frontend is deployed on https://dataguard-frontend-challenge.netlify.app/
+Backend mock is deployed on https://plugins-api-jd48.vercel.app/api/
 
-## Recommended IDE Setup
+### What was done:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Fetching all the data and displaying it in the tabs.
+Unfortunately I didn't manage to do everything I wanted to do in the 4 hours time frame.
 
-## Type Support for `.vue` Imports in TS
+### Here are the steps I would do next:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Implement 'disable plugins' functionality. Plugin card already has isDisabled prop. Need to disable plugin depending on the prop value. Could be done via css (div with absolute position and semitransparent background after the element) and disable the toggle via it's prop.
+- Currently, on plugin toggle only the local state changes. Need to emit an event on toggle. Event should contain pluginId and isActive in payload. Need to 'prevent default' to avoid reloading and receive the event on the parent element PluginCard.vue. In PluginCard.vue need to dispatch store action. Store action event should change the store state and call REST api to update the plugin stare on server.
+- Add global 'plugin disable/enable' toggle. From the NavigationBar component need to dispatch a store action on toggle's change. The store action should change all plugins state and call REST api to update plugins on server.
+- Styling improvements.
+- Some cleanup. For example group 'error' and 'loading' conditions and move them to separate handlers. Remove code duplication. There are very similar code blocks in stores. probably some helper could be used
+- Unit tests are missing
