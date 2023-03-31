@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Toggle from './Toggle.vue';
 import { ref, onMounted } from 'vue';
 import { useTabs } from '../hooks/useTabs';
 import { useTabDataStore } from '../stores/tabData';
