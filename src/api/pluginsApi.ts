@@ -2,7 +2,7 @@ import type { tabDataType } from '@/types';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'https://plugins-api-jd48.vercel.app/api',
 });
 
 // TODO handle error case properly
